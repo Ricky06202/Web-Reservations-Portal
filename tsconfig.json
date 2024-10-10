@@ -3,14 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@reservations/*": [
-        "modules/reservations/*"
-      ],
-      "@authentication/*": [
-        "modules/authentication/*"
-      ]
+      "@reservations/*": ["modules/reservations/*"],
+      "@authentication/*": ["modules/authentication/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
 }
+
