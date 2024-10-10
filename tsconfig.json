@@ -4,10 +4,10 @@
     "baseUrl": "./src",
     "paths": {
       "@reservations/*": [
-        "/modules/reservations/*"
+        "modules/reservations/*"
       ],
       "@authentication/*": [
-        "/modules/authentication/*"
+        "modules/authentication/*"
       ]
     },
     "jsx": "react-jsx",
