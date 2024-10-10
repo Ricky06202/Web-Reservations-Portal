@@ -1,3 +1,16 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@reservations/*": [
+        "/modules/reservations/*"
+      ],
+      "@authentication/*": [
+        "/modules/authentication/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

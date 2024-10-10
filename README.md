@@ -1,12 +1,12 @@
-# Portal de Reservas Web
+# Portal de Reservas
 
 ## Descripción del Proyecto
 
-Este repositorio se dedica al desarrollo de un portal de reservas web para eventos. El portal permitirá a los usuarios reservar asientos para eventos en tiempo real, con actualizaciones reflejadas instantáneamente en todos los clientes. El sistema también contará con un mecanismo de autenticación para asegurar acceso seguro y personalizado.
+Este repositorio se dedica al desarrollo de un portal de reservas de asientos para eventos. El portal permitirá a los usuarios reservar asientos para eventos en tiempo real, con actualizaciones reflejadas instantáneamente en todos los clientes. El sistema también contará con un mecanismo de autenticación para asegurar acceso seguro y personalizado.
 
 ## Características Clave a Desarrollar
 
-A continuación, se presentan las características clave que se deben desarrollar para el Portal de Reservas Web:
+A continuación, se presentan las características clave que se deben desarrollar para el Portal de Reservas:
 
 ### 1. Sistema de Inicio de Sesión
 
