@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { eventos } from "@authentication/components/datosPrueba";
 import EventElement from "@authentication/components/eventComponent";
 
 export default function EventList() {
+  const [mostrarEvento, setMostrarEvento] = useState([]);
   const [buscarEvento, setBuscarEvento] = useState("");
+
+  const url = "http://127.0.0.1:8000/api/eventos/";
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setMostrarEvento(data);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  if (mostrarEvento.length === 0) {
+    return <div>Cargando...</div>;
+  }
 
   const busqueda = (event) => {
     setBuscarEvento(event.target.value);
   };
 
-  const filtrarEventos = eventos.filter((evento) =>
-    evento.nombre.toLowerCase().includes(buscarEvento.toLowerCase())
-  );
+  const filtrarEventos = mostrarEvento.filter((evento) => {
+    return evento.name_event.toLowerCase().includes(buscarEvento.toLowerCase());
+  });
 
   return (
     <div className="grid grid-cols-1 justify-center">

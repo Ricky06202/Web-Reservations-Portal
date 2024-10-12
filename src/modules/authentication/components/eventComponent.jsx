@@ -7,7 +7,7 @@ export default function EventElement({ evento }) {
         <div className="flex">
           <img className="w-8 h-8 mr-2" src="/favicon.svg" />
           <a href="#" className="text-xl font-bold">
-            {evento.nombre}
+            {evento.name_event}
           </a>
         </div>
         <div className="flex flex-row gap-4">
