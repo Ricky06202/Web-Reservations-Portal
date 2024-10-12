@@ -1,32 +1,10 @@
-import { useState } from "react";
+import { useFiltroEstado } from "@reservations/hooks/useFiltroEstado";
 import AsientoCard from "./AsientoCard";
+import { useAsientos } from "@reservations/hooks/useAsientos";
 
-interface Asiento {
-  id: number;
-  numeroAsiento: number;
-  ocupado: boolean;
-  nombreReserva?: string;
-}
 export default function ListaAsientos() {
-  const [filtro, setFiltro] = useState<"todos" | "disponibles" | "ocupados">(
-    "todos",
-  );
-
-  const asientos: Asiento[] = [
-    { id: 1, numeroAsiento: 1, ocupado: false },
-    { id: 2, numeroAsiento: 2, ocupado: true, nombreReserva: "Juan Pérez" },
-    { id: 3, numeroAsiento: 3, ocupado: false },
-    { id: 4, numeroAsiento: 4, ocupado: true, nombreReserva: "María García" },
-    { id: 5, numeroAsiento: 5, ocupado: false },
-    { id: 6, numeroAsiento: 6, ocupado: false },
-  ];
-
-  const asientosFiltrados = asientos.filter((asiento) => {
-    if (filtro === "todos") return true;
-    if (filtro === "disponibles") return !asiento.ocupado;
-    if (filtro === "ocupados") return asiento.ocupado;
-    return true;
-  });
+  const asientos = useAsientos();
+  const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(asientos);
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -48,16 +26,20 @@ export default function ListaAsientos() {
           <option value="ocupados">Ocupados</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {asientosFiltrados.map((asiento) => (
-          <AsientoCard
-            key={asiento.id}
-            numeroAsiento={asiento.numeroAsiento}
-            ocupado={asiento.ocupado}
-            nombreReserva={asiento.nombreReserva}
-          />
-        ))}
-      </div>
+      {asientosFiltrados && asientosFiltrados.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {asientosFiltrados.map((asiento) => (
+            <AsientoCard
+              key={asiento.id}
+              numeroAsiento={asiento.asiento}
+              ocupado={asiento.ocupado}
+              nombreReserva={asiento.usuario}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center ">No hay asientos disponibles</p>
+      )}
     </div>
   );
 }
