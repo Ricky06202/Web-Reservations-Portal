@@ -1,0 +1,131 @@
+---
+import Logo from '/public/favicon.svg'
+import RolesComponente from './roles'
+
+const props = Astro.props
+---
+
+<footer class='bg-white dark:bg-gray-900'>
+	<div class='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
+		<div class='md:flex md:justify-between'>
+			<div class='mb-6 md:mb-0'>
+				<a
+					href='/'
+					class='flex items-center'
+				>
+					<img
+						src={Logo.src}
+						class='h-8 me-3'
+					/>
+					<span class='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>Logo</span>
+				</a>
+			</div>
+			<div class='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
+				<div>
+					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Repositorios</h2>
+					<ul class='text-gray-500 dark:text-gray-400 font-medium'>
+						<li class='mb-4'>
+							<a
+								href='https://github.com/Ricky06202/Web-Reservations-Portal'
+								class='hover:underline'
+								>FrontEnd</a
+							>
+						</li>
+						<li>
+							<a
+								href='https://github.com/Jeison0770/RetoGrupo2'
+								class='hover:underline'
+								>Backend</a
+							>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Legal</h2>
+					<ul class='text-gray-500 dark:text-gray-400 font-medium'>
+						<li class='mb-4'>
+							<a
+								href='#'
+								class='hover:underline'
+								>Política de privacidad</a
+							>
+						</li>
+						<li>
+							<a
+								href='#'
+								class='hover:underline'
+								>Terminos &amp; Condiciones</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr class='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
+		<!-- Roles del equipo -->
+		<div class='grid grid-row-1 items-center justify-between mx-auto'>
+			<span> Reto Grupal: Sistema de Reservas para Eventos en Tiempo Real </span>
+			<span>Desarrollado para el 16 de octubre del 2024</span>
+			<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
+				<!-- Jeisson -->
+				<RolesComponente
+					nombre={'Jeisson'}
+					rol={'Base de Datos'}
+					imagen={'/database.svg'}
+					textoImagen={''}
+					colorTexto={'red'}
+				/>
+				<!-- Jean -->
+				<RolesComponente
+					nombre={'Jean'}
+					rol={'Notificaciones'}
+					imagen={'/message.svg'}
+					textoImagen={''}
+					colorTexto={'green'}
+				/>
+				<!-- Jahir -->
+				<RolesComponente
+					nombre={'Jahir'}
+					rol={'Sistema de Autentificación'}
+					imagen={'/user.svg'}
+					textoImagen={''}
+					colorTexto={'#FF6C00'}
+				/>
+				<!-- Edwar -->
+				<RolesComponente
+					nombre={'Edwar'}
+					rol={'Web Sockets'}
+					imagen={'/websocket.svg'}
+					textoImagen={''}
+					colorTexto={'#191970'}
+				/>
+				<!-- Dilan -->
+				<RolesComponente
+					nombre={'Dilan'}
+					rol={'Historial de Reserva'}
+					imagen={'/history.svg'}
+					textoImagen={''}
+					colorTexto={'purple'}
+				/>
+				<!-- Azner y Ricardo -->
+				<RolesComponente
+					nombre={'Azner y Ricardo'}
+					rol={'FrontEnd'}
+					imagen={'/favicon.svg'}
+					textoImagen={''}
+					colorTexto={'#808000'}
+				/>
+				<!-- Pedro -->
+				<RolesComponente
+					nombre={'Pedro'}
+					rol={'Proyecto Dockerizado'}
+					imagen={'/docker.svg'}
+					textoImagen={''}
+					colorTexto={'blue'}
+				/>
+			</div>
+		</div>
+		<!-- Roles del equipo -->
+	</div>
+</footer>

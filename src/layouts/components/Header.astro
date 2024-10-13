@@ -1,0 +1,84 @@
+---
+import Logo from '/public/favicon.svg'
+
+const { href, title } = Astro.props
+---
+
+<nav class='bg-white border-gray-200 dark:bg-gray-900'>
+	<div class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 navbar'>
+		<!-- Logo principal -->
+		<a
+			href='/'
+			class='flex items-center space-x-3 rtl:space-x-reverse rounded-md px-2 py-1'
+		>
+			<img
+				src={Logo.src}
+				class='h-12'
+			/>
+			<span class='text-2xl font-semibold whitespace-nowrap'>Logo</span>
+		</a>
+		<!-- Logo principal -->
+		<!-- Iniciar Sesión -->
+		<!-- <div>
+      <a
+        href="/login"
+        class="mr-3 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:bg-slate-200 focus:ring-slate-200"
+      >
+        <span> Iniciar Sesión </span>
+      </a>
+      <a
+        href="/registrarse"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+      >
+        <span> Registrarse </span>
+      </a>
+    </div> -->
+		<!-- Iniciar Sesión -->
+		<!-- Sesión Activada -->
+		<div
+			id='id_boton_perfil'
+			data-dropdown-toggle='dropdownNavbar'
+			class=''
+		>
+			<button class='flex flex-auto items-center gap-1 mr-10'>
+				<img
+					src='/profile_image.svg'
+					class='w-14 h-14 ml-2'
+				/>
+				<span class='text-2xl'>Azner</span>
+			</button>
+
+			<!-- Dropdown menu oculto -->
+			<div
+				id='id_menu_perfil'
+				class='absolute text-sm text-gray-600 z-10 border hidden rounded-lg shadow w-44 divide-y font-normal bg-white divide-gray-300'
+			>
+				<div class='grid grid-cols-1 m-3'>
+					<span class='font-extrabold'>Azner Aparicio</span>
+					<span>azner@correo.com</span>
+				</div>
+				<div class='grid grid-cols-1 m-3 gap-2'>
+					<button>Mi perfil</button>
+					<button>Configuración</button>
+				</div>
+				<div class='grid grid-cols-1 m-3 gap-2'>
+					<button>Eventos subscrito</button>
+					<button>Calendario</button>
+				</div>
+				<div class='grid grid-cols-1 m-3'>
+					<button class='m-2'>Cerrar Sesión</button>
+				</div>
+			</div>
+		</div>
+		<!-- Sesión Activada -->
+	</div>
+</nav>
+
+<script>
+	const boton_perfil = document.getElementById('id_boton_perfil') as Element
+	const menu_abierto_perfil = document.getElementById('id_menu_perfil') as Element
+
+	boton_perfil.addEventListener('click', () => {
+		menu_abierto_perfil.classList.toggle('hidden')
+	})
+</script>
