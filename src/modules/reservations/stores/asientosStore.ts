@@ -11,7 +11,11 @@ export const useAsientosStore = create<AsientosState>()(
     (set) => ({
       asientos: null,
       setAsientos: (asientos) => {
-        set({ asientos });
+        set({
+          asientos: asientos
+            ? asientos.sort((a, b) => a.asiento - b.asiento)
+            : null,
+        });
       },
     }),
     { name: "asientos-store" },

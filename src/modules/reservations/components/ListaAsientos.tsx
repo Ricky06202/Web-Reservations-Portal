@@ -2,15 +2,10 @@ import { useFiltroEstado } from "@reservations/hooks/useFiltroEstado";
 import AsientoCard from "./AsientoCard";
 import { useAsientos } from "@reservations/hooks/useAsientos";
 import { ModalButton } from "./ModalButton";
-import type { Asiento } from "@reservations/constants/reservasTypes";
 
 export default function ListaAsientos() {
   const asientos = useAsientos();
   const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(asientos);
-
-  const handleAction = (asiento: Partial<Asiento>) => {
-    console.log("Reservar asiento", asiento);
-  };
 
   return (
     <div className="flex flex-col items-center p-4 gap-4">
@@ -33,16 +28,12 @@ export default function ListaAsientos() {
             <option value="ocupados">Ocupados</option>
           </select>
         </div>
-        <ModalButton variant="create" onAction={handleAction} />
+        <ModalButton variant="create" />
       </div>
       {asientosFiltrados && asientosFiltrados.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {asientosFiltrados.map((asiento) => (
-            <ModalButton
-              key={asiento.id}
-              asiento={asiento}
-              onAction={handleAction}
-            >
+            <ModalButton key={asiento.id} asiento={asiento}>
               <AsientoCard
                 key={asiento.id}
                 numeroAsiento={asiento.asiento}

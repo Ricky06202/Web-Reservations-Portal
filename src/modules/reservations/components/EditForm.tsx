@@ -1,22 +1,18 @@
 import type { Asiento } from "@reservations/constants/reservasTypes";
 
 interface FormProps {
-  variant: "create" | "edit" | "delete";
   handleSubmit: (e: React.FormEvent) => void;
   formData: Partial<Asiento>;
   setFormData: (formData: Partial<Asiento>) => void;
 }
-export default function Form({
-  variant,
+export default function EditForm({
   handleSubmit,
   formData,
   setFormData,
 }: FormProps) {
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="text-xl font-bold mb-4">
-        {variant === "create" ? "Crear" : "Editar"} Asiento
-      </h2>
+      <h2 className="text-xl font-bold mb-4">Editar Asiento</h2>
       <div className="mb-4">
         <label
           htmlFor="numeroAsiento"
@@ -84,7 +80,7 @@ export default function Form({
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          {variant === "create" ? "Crear" : "Guardar"}
+          Guardar
         </button>
       </div>
     </form>

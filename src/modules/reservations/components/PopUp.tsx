@@ -14,15 +14,21 @@ export default function PopUp({ asiento, onAction, variant }: PopUpProps) {
       <p>
         {variant === "delete"
           ? "¿Estás seguro de que quieres eliminar el asiento "
-          : "¿Desea reservar el asiento "}
+          : asiento.ocupado
+            ? "¿Desea quitar la reserva del asiento "
+            : "¿Desea reservar el asiento "}
         {asiento?.asiento}?
       </p>
       <div className="flex justify-end mt-4">
         <button
           onClick={() => onAction()}
-          className={`${variant === "delete" ? "bg-red-500 hover:bg-red-700" : "bg-blue-500 hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded`}
+          className={`${variant === "delete" ? "bg-red-500 hover:bg-red-700" : "bg-gray-500 hover:bg-gray-700"} text-white font-bold py-2 px-4 rounded`}
         >
-          {variant === "delete" ? "Eliminar" : "Reservar"}
+          {variant === "delete"
+            ? "Eliminar"
+            : asiento.ocupado
+              ? "Quitar Reserva"
+              : "Reservar"}
         </button>
       </div>
     </div>
