@@ -1,8 +1,8 @@
 ---
-import Layout from '@authentication/layout/AuthLayout.astro'
 import EventList from '@events/components/EventList'
+import ReservationsLayout from '@reservations/layout/ReservationsLayout.astro'
 ---
 
-<Layout title='Lista de eventos'>
+<ReservationsLayout title='Lista de eventos'>
 	<EventList client:load />
-</Layout>
+</ReservationsLayout>

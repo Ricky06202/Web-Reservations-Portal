@@ -1,7 +1,9 @@
 ---
-import BaseLayout from "layouts/BaseLayout.astro";
+import BaseLayout from 'layouts/BaseLayout.astro'
+
+const { title } = Astro.props
 ---
 
-<BaseLayout title="Welcome to Astro.">
+<BaseLayout title={title}>
 	<slot />
 </BaseLayout>
