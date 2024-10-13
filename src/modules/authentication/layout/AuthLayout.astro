@@ -1,7 +1,11 @@
 ---
-import BaseLayout from "layouts/BaseLayout.astro"
+import BaseLayout from "layouts/BaseLayout.astro";
+import Header from "@authentication/layout/components/Header.astro";
+import Footer from "@authentication/layout/components/Footer.astro";
 ---
 
 <BaseLayout title="Welcome to Astro.">
-	<slot />
+  <Header />
+  <slot />
+  <Footer />
 </BaseLayout>

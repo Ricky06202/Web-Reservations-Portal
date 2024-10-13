@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { eventos } from "@authentication/components/datosPrueba";
 import EventElement from "@authentication/components/eventComponent";
 
 export default function EventList() {
