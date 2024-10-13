@@ -1,131 +1,141 @@
 ---
 import Logo from '/public/favicon.svg'
 import RolesComponente from './roles'
+import { AstroIcon } from './icons/AstroIcon'
 
 const props = Astro.props
+
+interface Role {
+	nombre: string
+	rol: string
+	icon: JSX.Element
+	color: string
+}
+
+const Roles = [
+	{
+		nombre: 'Jeison',
+		rol: 'Base de datos',
+		icon: 'Base de datos',
+		color: 'red',
+	},
+	{
+		nombre: 'Jean',
+		rol: 'Notificaciones',
+		icon: 'Notificaciones',
+		color: 'green',
+	},
+	{
+		nombre: 'Jahir',
+		rol: 'Autentificación',
+		icon: 'Autenticacion',
+		color: '#FF6C00',
+	},
+	{
+		nombre: 'Edwar',
+		rol: 'WebSocket',
+		icon: 'WebSocket',
+		color: '#191970',
+	},
+	{
+		nombre: 'Dilan',
+		rol: 'Historial de eventos',
+		icon: 'Historial',
+		color: 'purple',
+	},
+	{
+		nombre: 'Azner y Ricardo',
+		rol: 'Aplicación Web',
+		icon: 'Astro',
+		color: '#808000',
+	},
+	{
+		nombre: 'Pedro',
+		rol: 'Docker',
+		icon: 'Docker',
+		color: 'blue',
+	},
+]
 ---
 
-<footer class='bg-white dark:bg-gray-900'>
-	<div class='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
-		<div class='md:flex md:justify-between'>
-			<div class='mb-6 md:mb-0'>
+<footer class='bg-gray-100 mt-8'>
+	<div class='mx-auto w-full max-w-screen-xl p-6 lg:p-8'>
+		<div class='grid grid-cols-1 gap-8 lg:grid-cols-3'>
+			<div class='lg:col-span-1'>
 				<a
 					href='/'
-					class='flex items-center'
+					class='flex items-center space-x-3'
 				>
-					<img
-						src={Logo.src}
-						class='h-8 me-3'
-					/>
-					<span class='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>Logo</span>
+					<AstroIcon className='w-10 h-10 text-primary' />
+					<span class='self-center text-2xl font-semibold text-gray-900'>Portal de Reservas</span>
 				</a>
+				<p class='mt-4 text-sm text-gray-600'>Sistema de Reservas para Eventos en Tiempo Real</p>
+				<p class='mt-2 text-sm text-gray-500'>Desarrollado para el 16 de octubre del 2024</p>
 			</div>
-			<div class='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
+
+			<div class='grid grid-cols-2 gap-8 lg:col-span-2'>
 				<div>
-					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Repositorios</h2>
-					<ul class='text-gray-500 dark:text-gray-400 font-medium'>
-						<li class='mb-4'>
+					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase'>Repositorios</h2>
+					<ul class='space-y-4'>
+						<li>
 							<a
 								href='https://github.com/Ricky06202/Web-Reservations-Portal'
-								class='hover:underline'
-								>FrontEnd</a
+								class='text-gray-600 hover:text-blue-500 transition-colors'
 							>
+								FrontEnd
+							</a>
 						</li>
 						<li>
 							<a
 								href='https://github.com/Jeison0770/RetoGrupo2'
-								class='hover:underline'
-								>Backend</a
+								class='text-gray-600 hover:text-blue-500 transition-colors'
 							>
+								Backend
+							</a>
 						</li>
 					</ul>
 				</div>
-
 				<div>
-					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Legal</h2>
-					<ul class='text-gray-500 dark:text-gray-400 font-medium'>
-						<li class='mb-4'>
+					<h2 class='mb-6 text-sm font-semibold text-gray-900 uppercase'>Legal</h2>
+					<ul class='space-y-4'>
+						<li>
 							<a
 								href='#'
-								class='hover:underline'
-								>Política de privacidad</a
+								class='text-gray-600 hover:text-blue-500 transition-colors'
 							>
+								Política de privacidad
+							</a>
 						</li>
 						<li>
 							<a
 								href='#'
-								class='hover:underline'
-								>Terminos &amp; Condiciones</a
+								class='text-gray-600 hover:text-blue-500 transition-colors'
 							>
+								Terminos &amp; Condiciones
+							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<hr class='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
-		<!-- Roles del equipo -->
-		<div class='grid grid-row-1 items-center justify-between mx-auto'>
-			<span> Reto Grupal: Sistema de Reservas para Eventos en Tiempo Real </span>
-			<span>Desarrollado para el 16 de octubre del 2024</span>
-			<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
-				<!-- Jeisson -->
-				<RolesComponente
-					nombre={'Jeisson'}
-					rol={'Base de Datos'}
-					imagen={'/database.svg'}
-					textoImagen={''}
-					colorTexto={'red'}
-				/>
-				<!-- Jean -->
-				<RolesComponente
-					nombre={'Jean'}
-					rol={'Notificaciones'}
-					imagen={'/message.svg'}
-					textoImagen={''}
-					colorTexto={'green'}
-				/>
-				<!-- Jahir -->
-				<RolesComponente
-					nombre={'Jahir'}
-					rol={'Sistema de Autentificación'}
-					imagen={'/user.svg'}
-					textoImagen={''}
-					colorTexto={'#FF6C00'}
-				/>
-				<!-- Edwar -->
-				<RolesComponente
-					nombre={'Edwar'}
-					rol={'Web Sockets'}
-					imagen={'/websocket.svg'}
-					textoImagen={''}
-					colorTexto={'#191970'}
-				/>
-				<!-- Dilan -->
-				<RolesComponente
-					nombre={'Dilan'}
-					rol={'Historial de Reserva'}
-					imagen={'/history.svg'}
-					textoImagen={''}
-					colorTexto={'purple'}
-				/>
-				<!-- Azner y Ricardo -->
-				<RolesComponente
-					nombre={'Azner y Ricardo'}
-					rol={'FrontEnd'}
-					imagen={'/favicon.svg'}
-					textoImagen={''}
-					colorTexto={'#808000'}
-				/>
-				<!-- Pedro -->
-				<RolesComponente
-					nombre={'Pedro'}
-					rol={'Proyecto Dockerizado'}
-					imagen={'/docker.svg'}
-					textoImagen={''}
-					colorTexto={'blue'}
-				/>
+
+		<hr class='my-8 border-gray-200' />
+
+		<div class='mt-8 space-y-4'>
+			<h2 class='text-xl font-semibold text-gray-900 text-center'>Nuestro Equipo</h2>
+			<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+				{
+					Roles.map((rol, index) => (
+						<RolesComponente
+							key={index}
+							nombre={rol.nombre}
+							rol={rol.rol}
+							icon={rol.icon}
+							color={rol.color}
+						/>
+					))
+				}
 			</div>
 		</div>
-		<!-- Roles del equipo -->
 	</div>
 </footer>
