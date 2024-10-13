@@ -1,25 +1,16 @@
-import React from "react";
-
 export default function RegisterForm() {
   return (
     <div>
       <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
-            href="#"
-            class="flex items-center mb-6 text-2xl font-semibold text-gray-900"
-          >
-            <img class="w-8 h-8 mr-2" src="/favicon.svg" />
-            Formulario de Registro
-          </a>
-          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+          <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Llenar los campos requeridos
               </h1>
               <form class="space-y-4 md:space-y-6" action="#">
                 <div class="">
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Nombre de Usuario
                     <span className="text-red-500 font-extrabold text-lg">
                       *
@@ -34,7 +25,7 @@ export default function RegisterForm() {
                 <div>
                   <label
                     for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Nombre
                     <span className="text-red-500 font-extrabold text-lg">
@@ -49,7 +40,7 @@ export default function RegisterForm() {
                   />
                 </div>
                 <div>
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Apellido
                     <span className="text-red-500 font-extrabold text-lg">
                       *
@@ -65,7 +56,7 @@ export default function RegisterForm() {
                   />
                 </div>
                 <div class="">
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Correo Electrónico
                     <span className="text-red-500 font-extrabold text-lg">
                       *

@@ -46,8 +46,8 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors duration-200"
               >
-                <Profile className="w-10 h-10" />
                 <span className="text-lg font-medium">{userName}</span>
+                <Profile className="w-10 h-10" />
               </button>
 
               {isMenuOpen && (
