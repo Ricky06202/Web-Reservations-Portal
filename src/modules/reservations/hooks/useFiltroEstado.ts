@@ -1,7 +1,7 @@
 import type { Asiento } from "@reservations/constants/reservasTypes";
 import { useState } from "react";
 
-export function useFiltroEstado(asientos: Asiento[] | null) {
+export function useFiltroEstado(asientos: Asiento[] | null | undefined) {
   const [filtro, setFiltro] = useState<"todos" | "disponibles" | "ocupados">(
     "todos",
   );

@@ -1,0 +1,13 @@
+---
+import ReservationsLayout from '@reservations/layout/ReservationsLayout.astro'
+import ListaAsientos from '@reservations/components/ListaAsientos'
+
+const { id } = Astro.params
+---
+
+<ReservationsLayout>
+	<ListaAsientos
+		id={id}
+		client:load
+	/>
+</ReservationsLayout>
