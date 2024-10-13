@@ -59,7 +59,27 @@ export default function EditForm({
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
       </div>
-
+      <div className="mb-4">
+        <label
+          htmlFor="nombre"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Cantidad de Asientos
+        </label>
+        <input
+          type="number"
+          id="nombre"
+          value={formData.asientos || ""}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              asientos: parseInt(e.target.value),
+            })
+          }
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          required
+        />
+      </div>
       <div className="flex justify-end">
         <button
           type="submit"

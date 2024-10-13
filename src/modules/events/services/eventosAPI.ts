@@ -15,16 +15,12 @@ export function getEventos(): Promise<Evento[] | null> {
 }
 
 export function postEvento(evento: Evento) {
-  const nuevoEvento: Evento = {
-    ...evento,
-    asientos: 5,
-  };
   return fetch("http://localhost:8000/api/eventos/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(eventoToEventoApi(nuevoEvento)),
+    body: JSON.stringify(eventoToEventoApi(evento)),
   })
     .then((res) => res)
     .catch((error) => {

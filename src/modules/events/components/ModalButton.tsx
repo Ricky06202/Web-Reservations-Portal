@@ -93,7 +93,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 justify-center">
               <Button onClick={() => handleChangeTab()} isButton>
-                Reservar
+                Abrir
               </Button>
               <Button
                 onClick={() => handleChangeTab("delete")}
@@ -115,7 +115,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 justify-center">
               <Button onClick={() => handleChangeTab()} isButton>
-                Reservar
+                Abrir
               </Button>
               <Button onClick={() => handleChangeTab("edit")} variant="edit">
                 Editar

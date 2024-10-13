@@ -9,7 +9,7 @@ export default function PopUp({ evento, onAction, variant }: PopUpProps) {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">
-        {variant === "delete" ? "Eliminar" : "Reservar"} Asiento
+        {variant === "delete" ? "Eliminar" : "Abrir"} Evento
       </h2>
       <p>
         {variant === "delete"
