@@ -1,11 +1,8 @@
 ---
-import Layout from "@authentication/layout/AuthLayout.astro";
-import EventList from "@authentication/components/eventListComponent";
-import Event from "@authentication/components/eventComponent";
+import Layout from '@authentication/layout/AuthLayout.astro'
+import EventList from '@events/components/EventList'
 ---
 
-<Layout title="Lista de eventos">
-  <main>
-    <EventList client:load />
-  </main>
+<Layout title='Lista de eventos'>
+	<EventList client:load />
 </Layout>
