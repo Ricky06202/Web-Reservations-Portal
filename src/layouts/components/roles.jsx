@@ -30,7 +30,7 @@ export default function RolesComponente({ key, nombre, rol, icon, color }) {
             <span
               className="inline-block px-2 py-1 text-xs font-semibold rounded-full mt-1"
               style={{
-                backgroundColor: `${color}22`,
+                backgroundColor: `white`,
                 color: color,
                 borderWidth: "1px",
                 borderColor: color,
