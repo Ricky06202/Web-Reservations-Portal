@@ -34,7 +34,7 @@ export default function Header({ needLogin = false }: Props) {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <a href="/eventos" className="flex items-center space-x-3">
+            <a href="/" className="flex items-center space-x-3">
               <AstroIcon className="w-10 h-10 text-primary" />
               <span className="text-2xl font-semibold text-gray-900">
                 Portal de Reservas
