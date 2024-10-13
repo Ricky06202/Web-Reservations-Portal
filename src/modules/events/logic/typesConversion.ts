@@ -1,19 +1,18 @@
 import type { Evento, EventoAPI } from "../constants/eventosTypes";
 
-export function eventosToEventosApi(eventos: Evento[]): EventoAPI[] {
-  return eventos.map((e) => ({
-    id_event: e.id,
-    name_event: e.nombre,
-    fecha: e.fecha,
-    cantidad_puestos: e.asientos,
-  }));
+export function eventoToEventoApi(evento: Evento): EventoAPI {
+  return {
+    id_event: evento.id,
+    name_event: evento.nombre,
+    fecha: evento.fecha,
+    cantidad_puestos: evento.asientos,
+  };
 }
-
-export function eventosApiToEventos(eventosAPI: EventoAPI[]): Evento[] {
-  return eventosAPI.map((e) => ({
-    id: e.id_event,
-    nombre: e.name_event,
-    fecha: e.fecha,
-    asientos: e.cantidad_puestos,
-  }));
+export function eventoApiToEvento(eventoAPI: EventoAPI): Evento {
+  return {
+    id: eventoAPI.id_event,
+    nombre: eventoAPI.name_event,
+    fecha: eventoAPI.fecha,
+    asientos: eventoAPI.cantidad_puestos,
+  };
 }

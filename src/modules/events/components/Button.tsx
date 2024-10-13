@@ -19,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
   const getButtonStyle = () => {
     switch (variant) {
       case "create":
-        return "bg-green-500 hover:bg-green-600";
+        return "bg-green-500 hover:bg-green-600 rounded-full";
       case "edit":
         return "bg-blue-500 hover:bg-blue-600";
       case "delete":

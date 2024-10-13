@@ -10,7 +10,9 @@ export default function EventCard({ evento }: Props) {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ease-in-out">
       <div className="bg-indigo-600 p-4">
-        <h3 className="text-xl font-bold text-white mb-1">{evento.nombre}</h3>
+        <h3 className="text-xl font-bold text-white mb-1 text-left">
+          {evento.nombre}
+        </h3>
         <div className="flex items-center text-indigo-100">
           <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
           <span className="text-sm">{evento.fecha}</span>

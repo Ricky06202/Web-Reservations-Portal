@@ -1,48 +1,43 @@
-import type { Asiento } from "@reservations/constants/reservasTypes";
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { Modal } from "./Modal";
 import PopUp from "./PopUp";
-import CreateForm from "./CreateForm";
-import EditForm from "./EditForm";
+import type { Evento } from "@events/constants/eventosTypes";
+import { useEventosStore } from "@events/stores/eventosStore";
 import {
-  deleteAsiento,
-  getAsientos,
-  makeReservation,
-  postAsiento,
-  putAsiento,
-} from "@reservations/services/reservasAPI";
-import { useAsientosStore } from "@reservations/stores/asientosStore";
+  deleteEvento,
+  getEventos,
+  postEvento,
+  putEvento,
+} from "@events/services/eventosAPI";
+import Form from "./Form";
 
 interface ModalButtonProps {
   variant?: "create" | "edit" | "delete";
-  asiento?: Asiento;
+  evento?: Evento;
   children?: React.ReactNode;
-  id?: string;
 }
 
 export const ModalButton: React.FC<ModalButtonProps> = ({
   variant,
-  asiento,
+  evento,
   children,
-  id,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState<Partial<Asiento>>(asiento || {});
-  const [cantidadAsientos, setCantidadAsientos] = useState(1);
+  const [formData, setFormData] = useState<Partial<Evento>>(evento || {});
   const [tipo, setTipo] = useState<undefined | "create" | "edit" | "delete">(
     variant,
   );
-  const setAsientos = useAsientosStore((state) => state.setAsientos);
-  const asientos = useAsientosStore((state) => state.asientos);
+  const setEventos = useEventosStore((state) => state.setEventos);
+  const eventos = useEventosStore((state) => state.eventos);
 
   useEffect(() => {
-    setFormData(asiento || {});
-  }, [asientos]);
+    setFormData(evento || {});
+  }, [eventos]);
 
-  const actualizarAsientos = () => {
-    getAsientos().then((asientos) => {
-      setAsientos(asientos);
+  const actualizarEventos = () => {
+    getEventos().then((eventos) => {
+      setEventos(eventos);
     });
   };
 
@@ -50,61 +45,34 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   const handleClose = () => {
     setIsOpen(false);
     setTipo(variant);
-    setFormData(asiento || {});
+    setFormData(evento || {});
   };
 
   const handleCreate = (e: React.FormEvent) => {
     e.preventDefault();
-    const nuevosAsientos = [];
-    let contador = 0;
-    for (let i = 0; i < cantidadAsientos; i++) {
-      if (
-        asientos?.find(
-          (asiento) =>
-            asiento.asiento === contador + 1 &&
-            asiento.idEvento === parseInt(id!),
-        )
-      ) {
-        i--;
-        contador++;
-        continue;
-      }
-
-      const nuevoAsiento: Asiento = {
-        idEvento: id ? parseInt(id) : 1,
-        idUsuario: 1,
-        asiento: contador++ + 1,
-        ocupado: false,
-      };
-      nuevosAsientos.push(postAsiento(nuevoAsiento));
-    }
-    Promise.all(nuevosAsientos).then(() => {
-      actualizarAsientos();
+    postEvento(formData as Evento).then(() => {
+      actualizarEventos();
     });
     handleClose();
   };
 
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
-    putAsiento(formData as Asiento).then(() => {
-      actualizarAsientos();
+    putEvento(formData as Evento).then(() => {
+      actualizarEventos();
     });
     handleClose();
   };
   const handleDelete = () => {
-    deleteAsiento(asiento!).then(() => {
-      actualizarAsientos();
+    deleteEvento(evento!).then(() => {
+      actualizarEventos();
     });
     handleClose();
   };
 
-  const handleReserve = () => {
-    makeReservation(formData as Asiento).then(() => {
-      actualizarAsientos();
-    });
-    handleClose();
+  const handleOpenEvento = () => {
+    window.location.href = `/eventos/${evento?.id}`;
   };
-
   const handleChangeTab = (nuevoTipo?: "edit" | "delete") => {
     setTipo(nuevoTipo);
   };
@@ -113,10 +81,11 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
     switch (tipo) {
       case "create":
         return (
-          <CreateForm
+          <Form
             handleSubmit={handleCreate}
-            cantidadAsientos={cantidadAsientos}
-            setCantidadAsientos={setCantidadAsientos}
+            formData={formData}
+            setFormData={setFormData}
+            variant="create"
           />
         );
       case "edit":
@@ -133,7 +102,8 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
                 Eliminar
               </Button>
             </div>
-            <EditForm
+            <Form
+              variant="edit"
               handleSubmit={handleEdit}
               formData={formData}
               setFormData={setFormData}
@@ -151,7 +121,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
                 Editar
               </Button>
             </div>
-            <PopUp asiento={asiento!} onAction={handleDelete} variant={tipo} />
+            <PopUp evento={evento!} onAction={handleDelete} variant={tipo} />
           </div>
         );
       default:
@@ -168,7 +138,11 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
                 Eliminar
               </Button>
             </div>
-            <PopUp asiento={asiento!} onAction={handleReserve} variant={tipo} />
+            <PopUp
+              evento={evento!}
+              onAction={handleOpenEvento}
+              variant={tipo}
+            />
           </div>
         );
     }

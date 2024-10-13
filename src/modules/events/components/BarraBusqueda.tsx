@@ -8,7 +8,7 @@ interface Props {
 }
 export default function BarraBusqueda({ buscarEvento, handleBuscar }: Props) {
   return (
-    <div className="w-full max-w-2xl mx-auto mb-8">
+    <div className="w-full max-w-2xl mx-auto">
       <div className="relative">
         <input
           type="text"

@@ -2,9 +2,14 @@ import { useFiltroEstado } from "@reservations/hooks/useFiltroEstado";
 import AsientoCard from "./AsientoCard";
 import { useAsientos } from "@reservations/hooks/useAsientos";
 import { ModalButton } from "./ModalButton";
-
-export default function ListaAsientos() {
-  const asientos = useAsientos();
+interface Props {
+  id: string | undefined;
+}
+export default function ListaAsientos({ id }: Props) {
+  const asientosAll = useAsientos();
+  const asientos = asientosAll?.filter(
+    (asiento) => asiento.idEvento === parseInt(id!),
+  );
   const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(asientos);
 
   return (
@@ -28,7 +33,7 @@ export default function ListaAsientos() {
             <option value="ocupados">Ocupados</option>
           </select>
         </div>
-        <ModalButton variant="create" />
+        <ModalButton variant="create" id={id} />
       </div>
       {asientosFiltrados && asientosFiltrados.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
