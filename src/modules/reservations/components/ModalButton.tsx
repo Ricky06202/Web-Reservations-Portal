@@ -33,7 +33,6 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   const [tipo, setTipo] = useState<undefined | "create" | "edit" | "delete">(
     variant,
   );
-  const setAsientos = useAsientosStore((state) => state.setAsientos);
   const asientos = useAsientosStore((state) => state.asientos);
 
   useEffect(() => {
@@ -41,9 +40,9 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   }, [asientos]);
 
   const actualizarAsientos = () => {
-    getAsientos().then((asientos) => {
-      setAsientos(asientos);
-    });
+    // getAsientos().then((asientos) => {
+    //   setAsientos(asientos);
+    // });
   };
 
   const handleOpen = () => setIsOpen(true);

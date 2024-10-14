@@ -2,7 +2,6 @@ import Event from "@events/components/Event";
 import { useEventos } from "@events/hooks/useEventos";
 import { useFiltroBusqueda } from "@events/hooks/useFiltroBusqueda";
 import BarraBusqueda from "./BarraBusqueda";
-import { Button } from "./Button";
 import { ModalButton } from "./ModalButton";
 
 export default function EventList() {
@@ -26,7 +25,7 @@ export default function EventList() {
         {filtrarEventos &&
           filtrarEventos?.map((evento) => (
             <ModalButton key={evento.id} evento={evento}>
-              <Event key={evento.id} evento={evento} />
+              <Event key={evento.id!} evento={evento} />
             </ModalButton>
           ))}
       </ul>

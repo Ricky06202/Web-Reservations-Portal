@@ -3,12 +3,16 @@ import { Calendar } from "./icons/Calendar";
 import { Users } from "./icons/Users";
 
 interface Props {
+  key: number;
   evento: Evento;
 }
 
-export default function EventCard({ evento }: Props) {
+export default function EventCard({ key, evento }: Props) {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ease-in-out">
+    <div
+      key={key}
+      className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ease-in-out"
+    >
       <div className="bg-indigo-600 p-4 flex justify-between items-center">
         <div>
           <h3 className="text-xl font-bold text-white mb-1 text-left">
