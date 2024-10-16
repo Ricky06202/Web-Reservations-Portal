@@ -7,6 +7,7 @@ interface ButtonProps {
   children: React.ReactNode;
   variant?: "create" | "edit" | "delete";
   isButton?: boolean;
+  key?: number;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -14,6 +15,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   variant,
   isButton,
+  key,
 }) => {
   const isCard = variant ? false : true;
   const getButtonStyle = () => {
@@ -44,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      key={key}
       onClick={onClick}
       className={
         isCard && !isButton

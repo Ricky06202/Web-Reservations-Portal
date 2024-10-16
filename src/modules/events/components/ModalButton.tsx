@@ -16,12 +16,14 @@ interface ModalButtonProps {
   variant?: "create" | "edit" | "delete";
   evento?: Evento;
   children?: React.ReactNode;
+  key?: number;
 }
 
 export const ModalButton: React.FC<ModalButtonProps> = ({
   variant,
   evento,
   children,
+  key,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<Evento>>(evento || {});
@@ -150,7 +152,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
 
   return (
     <>
-      <Button onClick={handleOpen} variant={variant}>
+      <Button key={key!} onClick={handleOpen} variant={variant}>
         {variant === "create"
           ? "Crear"
           : variant === "edit"
@@ -159,7 +161,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
               ? "Eliminar"
               : children}
       </Button>
-      <Modal isOpen={isOpen} onClose={handleClose}>
+      <Modal key={key!} isOpen={isOpen} onClose={handleClose}>
         {renderModalContent()}
       </Modal>
     </>
