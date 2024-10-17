@@ -34,7 +34,7 @@ export default function EditForm({
           required
         />
       </div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           htmlFor="ocupado"
           className="block text-sm font-medium text-gray-700"
@@ -55,7 +55,7 @@ export default function EditForm({
           <option value="false">Disponible</option>
           <option value="true">Ocupado</option>
         </select>
-      </div>
+      </div> */}
       <div className="flex justify-end">
         <button
           type="submit"
