@@ -56,25 +56,6 @@ export default function EditForm({
           <option value="true">Ocupado</option>
         </select>
       </div>
-      {formData.ocupado && (
-        <div className="mb-4">
-          <label
-            htmlFor="nombreReserva"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Nombre de Reserva
-          </label>
-          <input
-            type="text"
-            id="nombreReserva"
-            value={formData.usuario || ""}
-            onChange={(e) =>
-              setFormData({ ...formData, usuario: e.target.value })
-            }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          />
-        </div>
-      )}
       <div className="flex justify-end">
         <button
           type="submit"

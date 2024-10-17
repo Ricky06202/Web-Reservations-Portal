@@ -61,10 +61,17 @@ export function deleteAsiento(asiento: Asiento, token: string) {
     });
 }
 
-export function makeReservation(asiento: Asiento, token: string) {
+export function makeReservation(
+  asiento: Asiento,
+  userId: number,
+  username: string,
+  token: string,
+) {
   const nuevoAsiento: Asiento = {
     ...asiento,
     ocupado: !asiento.ocupado,
+    idUsuario: userId,
+    usuario: username,
   };
   return fetch(`http://localhost:8000/api/reservas/${asiento.id}/`, {
     method: "PUT",

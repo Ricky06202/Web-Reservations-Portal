@@ -20,6 +20,7 @@ interface ModalButtonProps {
   asiento?: Asiento;
   children?: React.ReactNode;
   id?: string;
+  disabled?: boolean;
 }
 
 export const ModalButton: React.FC<ModalButtonProps> = ({
@@ -27,6 +28,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   asiento,
   children,
   id,
+  disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<Asiento>>(asiento || {});
@@ -37,6 +39,9 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   const asientos = useAsientosStore((state) => state.asientos);
 
   const token = useAuthStore((state) => state.token);
+
+  const userId = useAuthStore((state) => state.id);
+  const username = useAuthStore((state) => state.username);
 
   useEffect(() => {
     setFormData(asiento || {});
@@ -101,9 +106,11 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   };
 
   const handleReserve = () => {
-    makeReservation(formData as Asiento, token!).then(() => {
-      actualizarAsientos();
-    });
+    makeReservation(formData as Asiento, userId!, username!, token!).then(
+      () => {
+        actualizarAsientos();
+      },
+    );
     handleClose();
   };
 
@@ -178,7 +185,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
 
   return (
     <>
-      <Button onClick={handleOpen} variant={variant}>
+      <Button disabled={disabled} onClick={handleOpen} variant={variant}>
         {variant === "create"
           ? "Crear"
           : variant === "edit"

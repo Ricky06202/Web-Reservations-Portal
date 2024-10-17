@@ -2,6 +2,7 @@ import { useFiltroEstado } from "@reservations/hooks/useFiltroEstado";
 import AsientoCard from "./AsientoCard";
 import { useAsientos } from "@reservations/hooks/useAsientos";
 import { ModalButton } from "./ModalButton";
+import { useAuthStore } from "@authentication/stores/authStore";
 interface Props {
   id: string | undefined;
 }
@@ -11,6 +12,8 @@ export default function ListaAsientos({ id }: Props) {
     (asiento) => asiento.idEvento === parseInt(id!),
   );
   const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(asientos);
+
+  const userId = useAuthStore((state) => state.id);
 
   return (
     <div className="flex flex-col items-center p-4 gap-4">
@@ -38,7 +41,11 @@ export default function ListaAsientos({ id }: Props) {
       {asientosFiltrados && asientosFiltrados.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {asientosFiltrados.map((asiento) => (
-            <ModalButton key={asiento.id} asiento={asiento}>
+            <ModalButton
+              disabled={asiento.ocupado && asiento.idUsuario !== userId}
+              key={asiento.id}
+              asiento={asiento}
+            >
               <AsientoCard
                 key={asiento.id}
                 numeroAsiento={asiento.asiento}
