@@ -11,9 +11,11 @@ export default function ListaAsientos({ id }: Props) {
   const asientos = asientosAll?.filter(
     (asiento) => asiento.idEvento === parseInt(id!),
   );
-  const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(asientos);
-
   const userId = useAuthStore((state) => state.id);
+  const { filtro, setFiltro, asientosFiltrados } = useFiltroEstado(
+    asientos,
+    userId!,
+  );
 
   return (
     <div className="flex flex-col items-center p-4 gap-4">
@@ -27,13 +29,20 @@ export default function ListaAsientos({ id }: Props) {
             id="filtro"
             value={filtro}
             onChange={(e) =>
-              setFiltro(e.target.value as "todos" | "disponibles" | "ocupados")
+              setFiltro(
+                e.target.value as
+                  | "todos"
+                  | "disponibles"
+                  | "ocupados"
+                  | "reservados",
+              )
             }
             className="border rounded p-2"
           >
             <option value="todos">Todos</option>
             <option value="disponibles">Disponibles</option>
             <option value="ocupados">Ocupados</option>
+            <option value="reservados">Mis Reservas</option>
           </select>
         </div>
         <ModalButton variant="create" id={id} />
