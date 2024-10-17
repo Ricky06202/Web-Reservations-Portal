@@ -21,7 +21,6 @@ export function useAsientos() {
         reservaToAsiento(asiento),
       );
       setAsientos(asientos);
-      console.log(asientos);
     };
   }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AstroIcon } from "./icons/AstroIcon";
 import { Profile } from "./icons/Profile";
+import { useAuthStore } from "@authentication/stores/authStore";
 
 interface Props {
   needLogin?: boolean;
@@ -9,7 +10,9 @@ export default function Header({ needLogin = false }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const userName = "Usuario"; // Este valor vendría de tu sistema de autenticación
+  const userName = useAuthStore((state) => state.username); // Este valor vendría de tu sistema de autenticación
+  const email = useAuthStore((state) => state.email);
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -28,6 +31,12 @@ export default function Header({ needLogin = false }: Props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setUser(null, null, null, null);
+    window.location.href = "/login";
+  };
 
   return (
     <nav className="bg-white shadow-md mb-4">
@@ -62,9 +71,7 @@ export default function Header({ needLogin = false }: Props) {
                       <p className="text-sm font-semibold text-gray-900">
                         {userName}
                       </p>
-                      <p className="text-xs text-gray-600">
-                        {userName.toLowerCase()}@correo.com
-                      </p>
+                      <p className="text-xs text-gray-600">{email}</p>
                     </div>
                     <a
                       href="#"
@@ -93,6 +100,7 @@ export default function Header({ needLogin = false }: Props) {
                     <div className="border-t border-gray-200">
                       <a
                         href="/login"
+                        onClick={handleLogout}
                         className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                       >
                         Cerrar Sesión

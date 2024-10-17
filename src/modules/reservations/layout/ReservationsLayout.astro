@@ -7,3 +7,11 @@ const { title } = Astro.props
 <BaseLayout title={title}>
 	<slot />
 </BaseLayout>
+
+<script>
+	const user = sessionStorage.getItem('auth-store')
+	const token = user ? JSON.parse(user).state.token : null
+	if (!token) {
+		window.location.href = '/login'
+	}
+</script>
