@@ -11,6 +11,7 @@ import {
   putEvento,
 } from "@events/services/eventosAPI";
 import Form from "./Form";
+import { useAuthStore } from "@authentication/stores/authStore";
 
 interface ModalButtonProps {
   variant?: "create" | "edit" | "delete";
@@ -33,12 +34,14 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
   const setEventos = useEventosStore((state) => state.setEventos);
   const eventos = useEventosStore((state) => state.eventos);
 
+  const token = useAuthStore((state) => state.token);
+
   useEffect(() => {
     setFormData(evento || {});
   }, [eventos]);
 
   const actualizarEventos = () => {
-    getEventos().then((eventos) => {
+    getEventos(token!).then((eventos) => {
       setEventos(eventos);
     });
   };
@@ -52,7 +55,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
 
   const handleCreate = (e: React.FormEvent) => {
     e.preventDefault();
-    postEvento(formData as Evento).then(() => {
+    postEvento(formData as Evento, token!).then(() => {
       actualizarEventos();
     });
     handleClose();
@@ -60,13 +63,13 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
 
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
-    putEvento(formData as Evento).then(() => {
+    putEvento(formData as Evento, token!).then(() => {
       actualizarEventos();
     });
     handleClose();
   };
   const handleDelete = () => {
-    deleteEvento(evento!).then(() => {
+    deleteEvento(evento!, token!).then(() => {
       actualizarEventos();
     });
     handleClose();

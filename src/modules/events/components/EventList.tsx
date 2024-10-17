@@ -5,7 +5,9 @@ import BarraBusqueda from "./BarraBusqueda";
 import { ModalButton } from "./ModalButton";
 
 export default function EventList() {
-  const eventos = useEventos();
+  const user = window.sessionStorage.getItem("auth-store");
+  const token = user ? JSON.parse(user).state.token : null;
+  const eventos = useEventos(token!);
   const { filtrarEventos, handleBuscar, buscarEvento } =
     useFiltroBusqueda(eventos);
   if (eventos?.length === 0) {

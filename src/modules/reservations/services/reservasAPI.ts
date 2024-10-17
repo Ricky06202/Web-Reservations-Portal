@@ -14,11 +14,12 @@ export function getAsientos(): Promise<Asiento[] | null> {
     });
 }
 
-export function postAsiento(asiento: Asiento) {
+export function postAsiento(asiento: Asiento, token: string) {
   return fetch("http://localhost:8000/api/reservas/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `token ${token}`,
     },
     body: JSON.stringify(asientoToReserva(asiento)),
   })
@@ -29,11 +30,12 @@ export function postAsiento(asiento: Asiento) {
     });
 }
 
-export function putAsiento(asiento: Asiento) {
+export function putAsiento(asiento: Asiento, token: string) {
   return fetch(`http://localhost:8000/api/reservas/${asiento.id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `token ${token}`,
     },
     body: JSON.stringify(asientoToReserva(asiento)),
   })
@@ -44,9 +46,13 @@ export function putAsiento(asiento: Asiento) {
     });
 }
 
-export function deleteAsiento(asiento: Asiento) {
+export function deleteAsiento(asiento: Asiento, token: string) {
   return fetch(`http://localhost:8000/api/reservas/${asiento.id}/`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `token ${token}`,
+    },
   })
     .then((res) => res)
     .catch((error) => {
@@ -55,7 +61,7 @@ export function deleteAsiento(asiento: Asiento) {
     });
 }
 
-export function makeReservation(asiento: Asiento) {
+export function makeReservation(asiento: Asiento, token: string) {
   const nuevoAsiento: Asiento = {
     ...asiento,
     ocupado: !asiento.ocupado,
@@ -64,6 +70,7 @@ export function makeReservation(asiento: Asiento) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `token ${token}`,
     },
     body: JSON.stringify(asientoToReserva(nuevoAsiento)),
   })

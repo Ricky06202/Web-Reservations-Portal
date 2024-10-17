@@ -13,6 +13,7 @@ import {
   putAsiento,
 } from "@reservations/services/reservasAPI";
 import { useAsientosStore } from "@reservations/stores/asientosStore";
+import { useAuthStore } from "@authentication/stores/authStore";
 
 interface ModalButtonProps {
   variant?: "create" | "edit" | "delete";
@@ -34,6 +35,8 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
     variant,
   );
   const asientos = useAsientosStore((state) => state.asientos);
+
+  const token = useAuthStore((state) => state.token);
 
   useEffect(() => {
     setFormData(asiento || {});
@@ -75,7 +78,7 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
         asiento: contador++ + 1,
         ocupado: false,
       };
-      nuevosAsientos.push(postAsiento(nuevoAsiento));
+      nuevosAsientos.push(postAsiento(nuevoAsiento, token!));
     }
     Promise.all(nuevosAsientos).then(() => {
       actualizarAsientos();
@@ -85,20 +88,20 @@ export const ModalButton: React.FC<ModalButtonProps> = ({
 
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
-    putAsiento(formData as Asiento).then(() => {
+    putAsiento(formData as Asiento, token!).then(() => {
       actualizarAsientos();
     });
     handleClose();
   };
   const handleDelete = () => {
-    deleteAsiento(asiento!).then(() => {
+    deleteAsiento(asiento!, token!).then(() => {
       actualizarAsientos();
     });
     handleClose();
   };
 
   const handleReserve = () => {
-    makeReservation(formData as Asiento).then(() => {
+    makeReservation(formData as Asiento, token!).then(() => {
       actualizarAsientos();
     });
     handleClose();
